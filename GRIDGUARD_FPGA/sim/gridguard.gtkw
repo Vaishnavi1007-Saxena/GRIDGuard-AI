@@ -1,0 +1,41 @@
+[*]
+[*] GRIDGUARD AI GTKWave Display Configuration
+[*]
+[dumpfile] "gridguard.vcd"
+[dumpfile_mtime] "Sat Sep 19 00:00:00 2026"
+[size] 1600 900
+[pos] -1 -1
+*-18.000000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] gridguard_tb.
+[treeopen] gridguard_tb.uut.
+@28
+gridguard_tb.clock
+gridguard_tb.reset
+@22
+gridguard_tb.voltage[15:0]
+gridguard_tb.frequency[15:0]
+gridguard_tb.transformer_loading_percent[15:0]
+gridguard_tb.solar_generation[15:0]
+gridguard_tb.ev_charging_load[15:0]
+gridguard_tb.battery_soc[15:0]
+@28
+gridguard_tb.voltage_status[1:0]
+gridguard_tb.frequency_status[1:0]
+gridguard_tb.overload_status
+gridguard_tb.solar_drop_status
+gridguard_tb.ev_surge_status
+gridguard_tb.fault_detected
+gridguard_tb.fault_code[3:0]
+@22
+gridguard_tb.grid_stress_index[7:0]
+gridguard_tb.blackout_risk_indicator[7:0]
+@28
+gridguard_tb.warning_alarm
+gridguard_tb.critical_alarm
+gridguard_tb.emergency_alarm
+gridguard_tb.reduce_ev_load
+gridguard_tb.activate_battery_support
+gridguard_tb.reduce_noncritical_load
+gridguard_tb.preserve_critical_load
+[pattern_trace] 1
+[pattern_trace] 0

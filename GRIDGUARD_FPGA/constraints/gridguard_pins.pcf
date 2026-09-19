@@ -1,0 +1,19 @@
+# ============================================================================
+# GRIDGUARD AI — FPGA Pin Constraints Placeholder (iCE40 / ECP5 / Gowin target)
+# ============================================================================
+
+# System Clock & Reset
+set_io clock 35
+set_io reset 36
+
+# Primary Status Outputs
+set_io fault_detected 37
+set_io warning_alarm 38
+set_io critical_alarm 39
+set_io emergency_alarm 40
+
+# Protection Commands
+set_io reduce_ev_load 41
+set_io activate_battery_support 42
+set_io reduce_noncritical_load 43
+set_io preserve_critical_load 44

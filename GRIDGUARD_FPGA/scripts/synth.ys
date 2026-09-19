@@ -1,0 +1,28 @@
+# GRIDGUARD AI - Yosys RTL Synthesis Script
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/voltage_monitor.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/frequency_monitor.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/current_monitor.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/power_monitor.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/transformer_monitor.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/solar_monitor.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/ev_load_monitor.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/battery_monitor.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/fault_detector.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/grid_stress_index.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/blackout_risk.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/protection_controller.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/critical_load_protection.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/alarm_controller.v
+read_verilog d:/gridguard/GRIDGUARD_FPGA/rtl/gridguard_top.v
+
+# Elaborate design hierarchy
+hierarchy -top gridguard_top
+
+# Perform high-level optimization
+proc; opt; memory; opt; fsm; opt;
+
+# Print synthesis technology mapping summary
+synth -top gridguard_top
+
+# Write gate-level netlist
+write_verilog d:/gridguard/GRIDGUARD_FPGA/sim/gridguard_synth.v

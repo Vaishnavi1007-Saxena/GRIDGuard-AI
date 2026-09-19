@@ -1,0 +1,837 @@
+$date
+	Sat Sep 19 00:45:54 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module gridguard_tb $end
+$var wire 1 ! warning_alarm $end
+$var wire 2 " voltage_status [1:0] $end
+$var wire 1 # solar_drop_status $end
+$var wire 1 $ reduce_noncritical_load $end
+$var wire 1 % reduce_ev_load $end
+$var wire 1 & preserve_critical_load $end
+$var wire 1 ' overload_status $end
+$var wire 8 ( grid_stress_index [7:0] $end
+$var wire 2 ) frequency_status [1:0] $end
+$var wire 1 * fault_detected $end
+$var wire 4 + fault_code [3:0] $end
+$var wire 1 , ev_surge_status $end
+$var wire 1 - emergency_alarm $end
+$var wire 1 . critical_alarm $end
+$var wire 8 / blackout_risk_indicator [7:0] $end
+$var wire 1 0 battery_status $end
+$var wire 1 1 activate_battery_support $end
+$var reg 16 2 active_power [15:0] $end
+$var reg 16 3 battery_soc [15:0] $end
+$var reg 1 4 clock $end
+$var reg 16 5 current [15:0] $end
+$var reg 16 6 ev_charging_load [15:0] $end
+$var reg 1 7 fault_injection_sig $end
+$var reg 16 8 frequency [15:0] $end
+$var reg 16 9 reactive_power [15:0] $end
+$var reg 1 : reset $end
+$var reg 16 ; solar_generation [15:0] $end
+$var reg 16 < total_grid_load [15:0] $end
+$var reg 16 = transformer_loading_percent [15:0] $end
+$var reg 16 > voltage [15:0] $end
+$scope module uut $end
+$var wire 16 ? active_power [15:0] $end
+$var wire 16 @ battery_soc [15:0] $end
+$var wire 1 0 battery_status $end
+$var wire 1 4 clock $end
+$var wire 16 A current [15:0] $end
+$var wire 16 B ev_charging_load [15:0] $end
+$var wire 1 , ev_surge_status $end
+$var wire 1 7 fault_injection_sig $end
+$var wire 16 C frequency [15:0] $end
+$var wire 1 ' overload_status $end
+$var wire 16 D reactive_power [15:0] $end
+$var wire 1 : reset $end
+$var wire 1 # solar_drop_status $end
+$var wire 16 E solar_generation [15:0] $end
+$var wire 16 F total_grid_load [15:0] $end
+$var wire 16 G transformer_loading_percent [15:0] $end
+$var wire 16 H voltage [15:0] $end
+$var wire 1 ! warning_alarm $end
+$var wire 2 I voltage_status [1:0] $end
+$var wire 1 J v_norm $end
+$var wire 1 K v_low $end
+$var wire 1 L v_high $end
+$var wire 1 M v_crit $end
+$var wire 1 N t_warn $end
+$var wire 1 O t_overload $end
+$var wire 1 P t_norm $end
+$var wire 1 Q t_crit $end
+$var wire 1 R s_norm $end
+$var wire 1 S s_drop $end
+$var wire 1 T s_crit_drop $end
+$var wire 1 $ reduce_noncritical_load $end
+$var wire 1 % reduce_ev_load $end
+$var wire 1 U prot_active $end
+$var wire 1 & preserve_critical_load $end
+$var wire 1 V p_overload $end
+$var wire 1 W p_norm $end
+$var wire 1 X p_high $end
+$var wire 1 Y i_warn $end
+$var wire 1 Z i_over $end
+$var wire 1 [ i_norm $end
+$var wire 8 \ grid_stress_index [7:0] $end
+$var wire 2 ] frequency_status [1:0] $end
+$var wire 1 * fault_detected $end
+$var wire 4 ^ fault_code [3:0] $end
+$var wire 1 _ f_warn $end
+$var wire 1 ` f_norm $end
+$var wire 1 a f_high $end
+$var wire 1 b f_crit $end
+$var wire 1 c ev_surge_flag $end
+$var wire 1 d ev_norm $end
+$var wire 1 e ev_high $end
+$var wire 1 - emergency_alarm $end
+$var wire 1 . critical_alarm $end
+$var wire 8 f blackout_risk_indicator [7:0] $end
+$var wire 1 g b_ready $end
+$var wire 1 h b_low $end
+$var wire 1 i b_crit $end
+$var wire 1 j b_avail $end
+$var wire 1 1 activate_battery_support $end
+$scope module inst_alarm $end
+$var wire 1 4 clk $end
+$var wire 1 : reset $end
+$var wire 8 k gsi [7:0] $end
+$var wire 1 * fault_detected $end
+$var wire 8 l blackout_risk_indicator [7:0] $end
+$var reg 1 . critical_alarm $end
+$var reg 1 - emergency_alarm $end
+$var reg 1 ! warning_alarm $end
+$upscope $end
+$scope module inst_b_mon $end
+$var wire 16 m battery_soc [15:0] $end
+$var wire 1 4 clk $end
+$var wire 1 : reset $end
+$var parameter 16 n SOC_AVAIL_MIN $end
+$var parameter 16 o SOC_LOW_LIMIT $end
+$var reg 1 j battery_available $end
+$var reg 1 i battery_critical $end
+$var reg 1 h battery_low $end
+$var reg 1 g battery_ready_for_support $end
+$upscope $end
+$scope module inst_crit_prot $end
+$var wire 1 4 clk $end
+$var wire 1 : reset $end
+$var wire 1 $ reduce_noncritical_load $end
+$var wire 8 p gsi [7:0] $end
+$var reg 1 q datacenter_feeder_status $end
+$var reg 1 r hospital_feeder_status $end
+$var reg 1 & preserve_critical_load $end
+$var reg 1 s water_plant_feeder_status $end
+$upscope $end
+$scope module inst_ev_mon $end
+$var wire 1 4 clk $end
+$var wire 16 t ev_charging_load [15:0] $end
+$var wire 1 : reset $end
+$var parameter 16 u SURGE_DELTA_KW $end
+$var parameter 16 v WARN_EV_KW $end
+$var reg 1 e ev_high $end
+$var reg 1 d ev_normal $end
+$var reg 1 c ev_surge $end
+$var reg 16 w prev_ev_load [15:0] $end
+$upscope $end
+$scope module inst_f_mon $end
+$var wire 1 4 clk $end
+$var wire 16 x frequency [15:0] $end
+$var wire 1 : reset $end
+$var parameter 16 y F_HIGH_WARN $end
+$var parameter 16 z F_LOW_CRIT $end
+$var parameter 16 { F_LOW_WARN $end
+$var parameter 16 | NOMINAL_FREQ $end
+$var reg 1 b frequency_critical $end
+$var reg 1 a frequency_high $end
+$var reg 1 ` frequency_normal $end
+$var reg 2 } frequency_severity [1:0] $end
+$var reg 1 _ frequency_warning $end
+$upscope $end
+$scope module inst_fault_det $end
+$var wire 1 4 clk $end
+$var wire 1 c ev_surge $end
+$var wire 1 7 fault_injection_sig $end
+$var wire 1 b frequency_critical $end
+$var wire 1 a frequency_high $end
+$var wire 1 : reset $end
+$var wire 1 K voltage_low $end
+$var wire 1 L voltage_high $end
+$var wire 1 O transformer_overload $end
+$var wire 1 S solar_drop $end
+$var wire 4 ~ fault_sum [3:0] $end
+$var parameter 4 !" FAULT_EV_SURGE $end
+$var parameter 4 "" FAULT_HIGH_FREQUENCY $end
+$var parameter 4 #" FAULT_HIGH_VOLTAGE $end
+$var parameter 4 $" FAULT_LOW_FREQUENCY $end
+$var parameter 4 %" FAULT_LOW_VOLTAGE $end
+$var parameter 4 &" FAULT_MULTIPLE $end
+$var parameter 4 '" FAULT_NONE $end
+$var parameter 4 (" FAULT_SOLAR_DROP $end
+$var parameter 4 )" FAULT_TRANSFORMER_OVERLOAD $end
+$var reg 4 *" fault_code [3:0] $end
+$var reg 1 * fault_detected $end
+$upscope $end
+$scope module inst_gsi $end
+$var wire 1 j battery_available $end
+$var wire 1 4 clk $end
+$var wire 1 c ev_surge $end
+$var wire 2 +" frequency_severity [1:0] $end
+$var wire 1 : reset $end
+$var wire 16 ," total_grid_load [15:0] $end
+$var wire 16 -" transformer_loading_percent [15:0] $end
+$var wire 2 ." voltage_severity [1:0] $end
+$var wire 1 S solar_drop $end
+$var reg 16 /" ev_component [15:0] $end
+$var reg 16 0" f_component [15:0] $end
+$var reg 8 1" gsi [7:0] $end
+$var reg 16 2" l_component [15:0] $end
+$var reg 16 3" raw_sum [15:0] $end
+$var reg 16 4" solar_component [15:0] $end
+$var reg 16 5" t_component [15:0] $end
+$var reg 16 6" v_component [15:0] $end
+$upscope $end
+$scope module inst_i_mon $end
+$var wire 1 4 clk $end
+$var wire 16 7" current [15:0] $end
+$var wire 1 : reset $end
+$var parameter 16 8" I_CRIT_LIMIT $end
+$var parameter 16 9" I_WARN_LIMIT $end
+$var reg 1 [ current_normal $end
+$var reg 1 Y current_warning $end
+$var reg 1 Z overcurrent_flag $end
+$upscope $end
+$scope module inst_p_mon $end
+$var wire 16 :" active_power [15:0] $end
+$var wire 1 4 clk $end
+$var wire 16 ;" reactive_power [15:0] $end
+$var wire 1 : reset $end
+$var parameter 16 <" P_MAX_KW $end
+$var parameter 16 =" P_NOMINAL_KW $end
+$var reg 1 X power_high $end
+$var reg 1 W power_normal $end
+$var reg 1 V power_overload $end
+$upscope $end
+$scope module inst_prot $end
+$var wire 1 j battery_available $end
+$var wire 1 4 clk $end
+$var wire 1 c ev_surge $end
+$var wire 8 >" gsi [7:0] $end
+$var wire 1 : reset $end
+$var wire 1 O transformer_overload $end
+$var wire 1 S solar_drop $end
+$var reg 1 1 activate_battery_support $end
+$var reg 1 U protection_action_active $end
+$var reg 1 % reduce_ev_load $end
+$var reg 1 $ reduce_noncritical_load $end
+$upscope $end
+$scope module inst_risk $end
+$var wire 1 j battery_available $end
+$var wire 1 4 clk $end
+$var wire 1 c ev_surge $end
+$var wire 1 b frequency_critical $end
+$var wire 8 ?" gsi [7:0] $end
+$var wire 1 : reset $end
+$var wire 1 M voltage_critical $end
+$var wire 1 O transformer_overload $end
+$var wire 1 S solar_drop $end
+$var wire 3 @" crit_count [2:0] $end
+$var reg 8 A" blackout_risk_indicator [7:0] $end
+$var reg 16 B" risk_calc [15:0] $end
+$upscope $end
+$scope module inst_s_mon $end
+$var wire 1 4 clk $end
+$var wire 1 : reset $end
+$var wire 16 C" solar_generation [15:0] $end
+$var parameter 16 D" CRIT_DROP_KW $end
+$var parameter 16 E" DROP_THRESHOLD_KW $end
+$var reg 16 F" prev_solar_gen [15:0] $end
+$var reg 1 T solar_critical_drop $end
+$var reg 1 S solar_drop $end
+$var reg 1 R solar_normal $end
+$upscope $end
+$scope module inst_t_mon $end
+$var wire 1 4 clk $end
+$var wire 1 : reset $end
+$var wire 16 G" transformer_loading_percent [15:0] $end
+$var parameter 16 H" CRIT_PERCENT $end
+$var parameter 16 I" OVERLOAD_PCT $end
+$var parameter 16 J" WARN_PERCENT $end
+$var reg 1 Q transformer_critical $end
+$var reg 1 P transformer_normal $end
+$var reg 1 O transformer_overload $end
+$var reg 1 N transformer_warning $end
+$upscope $end
+$scope module inst_v_mon $end
+$var wire 1 4 clk $end
+$var wire 1 : reset $end
+$var wire 16 K" voltage [15:0] $end
+$var parameter 16 L" NOMINAL_V $end
+$var parameter 16 M" V_HIGH_WARN $end
+$var parameter 16 N" V_LOW_CRIT $end
+$var parameter 16 O" V_LOW_WARN $end
+$var reg 1 M voltage_critical $end
+$var reg 1 L voltage_high $end
+$var reg 1 K voltage_low $end
+$var reg 1 J voltage_normal $end
+$var reg 2 P" voltage_severity [1:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1110110110 O"
+b1110000100 N"
+b10000011010 M"
+b1111101000 L"
+b1010000 J"
+b1100100 I"
+b1011111 H"
+b1100100000 E"
+b10111011100 D"
+b10111011100000 ="
+b11101010011000 <"
+b110010000 9"
+b111100000 8"
+b101 )"
+b111 ("
+b0 '"
+b1000 &"
+b1 %"
+b11 $"
+b10 #"
+b100 ""
+b110 !"
+b1001110001000 |
+b1001101110100 {
+b1001101010110 z
+b1001110111010 y
+b11111010000 v
+b1100100000 u
+b10100 o
+b101000 n
+$end
+#0
+$dumpvars
+b0 P"
+b1111101000 K"
+b1000001 G"
+b100111000100 F"
+b100111000100 C"
+bx B"
+b0 A"
+b0 @"
+b0 ?"
+b0 >"
+b10111011100 ;"
+b1111101000000 :"
+b11111010 7"
+bx 6"
+bx 5"
+bx 4"
+bx 3"
+bx 2"
+b0 1"
+bx 0"
+bx /"
+b0 ."
+b1000001 -"
+b10001111110000 ,"
+b0 +"
+b0 *"
+b0 ~
+b0 }
+b1001110001000 x
+b10010110000 w
+b10010110000 t
+1s
+1r
+1q
+b0 p
+b1010000 m
+b0 l
+b0 k
+1j
+0i
+0h
+1g
+b0 f
+0e
+1d
+0c
+0b
+0a
+1`
+0_
+b0 ^
+b0 ]
+b0 \
+1[
+0Z
+0Y
+0X
+1W
+0V
+0U
+0T
+0S
+1R
+0Q
+1P
+0O
+0N
+0M
+0L
+0K
+1J
+b0 I
+b1111101000 H
+b1000001 G
+b10001111110000 F
+b100111000100 E
+b10111011100 D
+b1001110001000 C
+b10010110000 B
+b11111010 A
+b1010000 @
+b1111101000000 ?
+b1111101000 >
+b1000001 =
+b10001111110000 <
+b100111000100 ;
+1:
+b10111011100 9
+b1001110001000 8
+07
+b10010110000 6
+b11111010 5
+04
+b1010000 3
+b1111101000000 2
+01
+10
+b0 /
+0.
+0-
+0,
+b0 +
+0*
+b0 )
+b0 (
+0'
+1&
+0%
+0$
+0#
+b0 "
+0!
+$end
+#10000
+14
+#20000
+04
+#30000
+14
+#40000
+04
+0:
+#50000
+b0 B"
+b0 3"
+b0 4"
+b0 /"
+b0 2"
+b0 5"
+b0 0"
+b0 6"
+14
+#60000
+04
+#70000
+14
+#80000
+04
+#90000
+14
+#100000
+04
+#110000
+14
+#120000
+04
+#130000
+14
+#140000
+04
+#150000
+14
+#160000
+04
+b100101100000 6
+b100101100000 B
+b100101100000 t
+#170000
+b1 ~
+b100101100000 w
+1,
+1c
+1e
+0d
+14
+#180000
+04
+#190000
+b110 +
+b110 ^
+b110 *"
+1*
+b1010 (
+b1010 \
+b1010 k
+b1010 p
+b1010 1"
+b1010 >"
+b1010 ?"
+1%
+b1010 3"
+b1010 /"
+14
+#200000
+04
+#210000
+1!
+1U
+b1010 /
+b1010 f
+b1010 l
+b1010 A"
+b1010 B"
+14
+#220000
+04
+#230000
+14
+#240000
+04
+b1100100000 ;
+b1100100000 E
+b1100100000 C"
+#250000
+b10 ~
+b1100100000 F"
+1T
+1#
+1S
+0R
+14
+#260000
+04
+#270000
+b1000 +
+b1000 ^
+b1000 *"
+b10100 (
+b10100 \
+b10100 k
+b10100 p
+b10100 1"
+b10100 >"
+b10100 ?"
+b11001 /
+b11001 f
+b11001 l
+b11001 A"
+11
+b10100 3"
+b1010 4"
+b11001 B"
+14
+#280000
+04
+b1101001 =
+b1101001 G
+b1101001 -"
+b1101001 G"
+#290000
+b1 @"
+b11 ~
+b100011 /
+b100011 f
+b100011 l
+b100011 A"
+b101000 (
+b101000 \
+b101000 k
+b101000 p
+b101000 1"
+b101000 >"
+b101000 ?"
+1'
+1O
+1Q
+0P
+b100011 B"
+b101000 3"
+b10100 5"
+14
+#300000
+04
+#310000
+b1000001 /
+b1000001 f
+b1000001 l
+b1000001 A"
+1$
+b1000001 B"
+14
+#320000
+04
+#330000
+b1000001 B"
+14
+#340000
+04
+b1101110000 >
+b1101110000 H
+b1101110000 K"
+#350000
+b10 @"
+b100 ~
+b10 "
+b10 I
+b10 ."
+b10 P"
+1M
+1K
+0J
+b1000001 B"
+14
+#360000
+04
+#370000
+b1001011 /
+b1001011 f
+b1001011 l
+b1001011 A"
+b1000001 (
+b1000001 \
+b1000001 k
+b1000001 p
+b1000001 1"
+b1000001 >"
+b1000001 ?"
+b1001011 B"
+b1000001 3"
+b11001 6"
+14
+#380000
+04
+#390000
+b1100100 /
+b1100100 f
+b1100100 l
+b1100100 A"
+1.
+b1100100 B"
+14
+#400000
+04
+b1001100111000 8
+b1001100111000 C
+b1001100111000 x
+#410000
+b101 ~
+b11 @"
+1-
+b10 )
+b10 ]
+b10 }
+b10 +"
+1b
+0`
+b1100100 B"
+14
+#420000
+04
+#430000
+b1010101 (
+b1010101 \
+b1010101 k
+b1010101 p
+b1010101 1"
+b1010101 >"
+b1010101 ?"
+b1010101 3"
+b10100 0"
+b1110011 B"
+14
+#440000
+04
+#450000
+b10000111 B"
+14
+#460000
+04
+b11100010100100 <
+b11100010100100 F
+b11100010100100 ,"
+b1110011 =
+b1110011 G
+b1110011 -"
+b1110011 G"
+b111110100 ;
+b111110100 E
+b111110100 C"
+b110010000000 6
+b110010000000 B
+b110010000000 t
+#470000
+b111110100 F"
+b110010000000 w
+b1100010 (
+b1100010 \
+b1100010 k
+b1100010 p
+b1100010 1"
+b1100010 >"
+b1100010 ?"
+b1100010 3"
+b1101 2"
+b10000111 B"
+14
+#480000
+04
+#490000
+b10010100 B"
+14
+#500000
+04
+#510000
+b10010100 B"
+14
+#520000
+04
+#530000
+b10010100 B"
+14
+#540000
+04
+b10001100101000 <
+b10001100101000 F
+b10001100101000 ,"
+b10010110000 6
+b10010110000 B
+b10010110000 t
+b100111000100 ;
+b100111000100 E
+b100111000100 C"
+b111100 =
+b111100 G
+b111100 -"
+b111100 G"
+b1001110001000 8
+b1001110001000 C
+b1001110001000 x
+b1111101000 >
+b1111101000 H
+b1111101000 K"
+#550000
+b0 @"
+b0 ~
+b0 "
+b0 I
+b0 ."
+b0 P"
+0M
+0K
+1J
+b0 )
+b0 ]
+b0 }
+b0 +"
+0b
+1`
+0'
+0O
+0Q
+1P
+b100111000100 F"
+0T
+0#
+0S
+1R
+b10010110000 w
+0,
+0c
+0e
+1d
+b1000001 (
+b1000001 \
+b1000001 k
+b1000001 p
+b1000001 1"
+b1000001 >"
+b1000001 ?"
+b1000001 3"
+b0 2"
+b0 5"
+b10010100 B"
+14
+#560000
+04
+#570000
+0$
+b1000001 /
+b1000001 f
+b1000001 l
+b1000001 A"
+b0 (
+b0 \
+b0 k
+b0 p
+b0 1"
+b0 >"
+b0 ?"
+b0 +
+b0 ^
+b0 *"
+0*
+b1000001 B"
+b0 3"
+b0 4"
+b0 /"
+b0 0"
+b0 6"
+14
+#580000
+04
+#590000
+b0 /
+b0 f
+b0 l
+b0 A"
+01
+0%
+0-
+0.
+0!
+b0 B"
+14
+#600000
+04
+#610000
+0U
+14
+#620000
+04
+#630000
+14
+#640000
+04

@@ -1,0 +1,8 @@
+{
+  "fault_accuracy_pct": 96.33,
+  "risk_r2_score": 0.9938,
+  "risk_rmse_pct": 0.65,
+  "sector_accuracy_pct": 96.0,
+  "inference_latency_ms": 87.46,
+  "total_samples": 3000
+}
