@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Pause, RotateCcw, Zap, Shield, Box, Layers } from 'lucide-react';
+import { Play, Pause, RotateCcw, Zap, Shield, Box, Layers, Volume2, VolumeX } from 'lucide-react';
 import Spatial3DGrid from '../components/Spatial3DGrid';
 import Topology2DMap from '../components/Topology2DMap';
 import AssetExplanationPanel from '../components/AssetExplanationPanel';
@@ -8,6 +8,7 @@ import ChatbotDrawer from '../components/ChatbotDrawer';
 import CoverLandingPage from '../components/CoverLandingPage';
 import AIPredictionDashboard from '../components/AIPredictionDashboard';
 import TeamDashboard from '../components/TeamDashboard';
+import { audioAlertDispatcher } from '../services/audioAlertDispatcher';
 import {
   computeSimulationTrajectory,
   INITIAL_FAULTS,
@@ -15,6 +16,9 @@ import {
 } from '../services/gridSimulationEngine';
 
 export default function Dashboard() {
+  // Voice Alarm Dispatcher State
+  const [isVoiceMuted, setIsVoiceMuted] = useState(() => audioAlertDispatcher.isMuted);
+
   // Simulation State
   const [activeFaults, setActiveFaults] = useState(INITIAL_FAULTS);
   const [activeTab, setActiveTab] = useState('cover'); // 'cover', 'intro', 'twin', 'matrix', 'team'
@@ -54,11 +58,37 @@ export default function Dashboard() {
   // Count active faults
   const activeFaultsCount = Object.values(activeFaults).filter(Boolean).length;
 
+  // Voice Audio Mute Toggle
+  const handleToggleVoiceMute = () => {
+    const muted = audioAlertDispatcher.toggleMute();
+    setIsVoiceMuted(muted);
+    if (!muted) {
+      audioAlertDispatcher.dispatchVoiceAlert('Audio voice alert dispatcher online.', 'mitigate');
+    }
+  };
+
   // Manual Fault Toggles
   const handleToggleFault = (key) => {
     setActiveFaults(prev => {
-      const updated = { ...prev, [key]: !prev[key] };
-      populateInspectorForFault(key, updated[key]);
+      const willBeActive = !prev[key];
+      const updated = { ...prev, [key]: willBeActive };
+      populateInspectorForFault(key, willBeActive);
+
+      // Voice alert dispatcher announcement
+      const faultTitles = {
+        ev: 'EV Surge',
+        solar: 'Solar Drop',
+        wind: 'Wind Stall',
+        industrial: 'Industrial Spike',
+        datacenter: 'AI Data Spike',
+        battery: 'BESS Battery Outage'
+      };
+      if (willBeActive) {
+        audioAlertDispatcher.alertFaultInjected(key, faultTitles[key] || key);
+      } else {
+        audioAlertDispatcher.alertFaultCleared(key, faultTitles[key] || key);
+      }
+
       return updated;
     });
   };
@@ -67,6 +97,7 @@ export default function Dashboard() {
     setActiveFaults(INITIAL_FAULTS);
     // Reset selected asset to nominal BESS
     populateInspectorForFault('battery', false);
+    audioAlertDispatcher.alertAllMitigated();
   };
 
   const populateInspectorForFault = (key, isNowActive = true) => {
@@ -309,6 +340,29 @@ export default function Dashboard() {
 
         {/* Right Status Badges & Clock */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {/* Voice Alert Dispatcher Mute/Unmute Button */}
+          <button
+            onClick={handleToggleVoiceMute}
+            title={isVoiceMuted ? "Voice Alerts Muted (Click to Unmute)" : "Voice Audio Dispatcher Active (Click to Mute)"}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px',
+              backgroundColor: isVoiceMuted ? 'rgba(100, 116, 139, 0.2)' : 'rgba(56, 189, 248, 0.15)',
+              border: `1px solid ${isVoiceMuted ? '#475569' : '#0284c7'}`,
+              color: isVoiceMuted ? '#94a3b8' : '#38bdf8',
+              borderRadius: '16px',
+              padding: '3px 10px',
+              fontSize: '10px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            {isVoiceMuted ? <VolumeX size={12} /> : <Volume2 size={12} />}
+            <span>{isVoiceMuted ? 'VOICE: MUTED' : 'VOICE: ACTIVE'}</span>
+          </button>
+
           {/* Grid Status Badge */}
           <div style={{
             backgroundColor: badgeStyle.bg,

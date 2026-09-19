@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Cpu, Shield, AlertTriangle, CheckCircle2, Zap, ArrowRight, BarChart3, Activity, RefreshCw } from 'lucide-react';
 import { api } from '../services/api';
+import { audioAlertDispatcher } from '../services/audioAlertDispatcher';
 
 export default function AIPredictionDashboard({ currentPoint, activeFaults, onApplyMitigation }) {
   const [prediction, setPrediction] = useState(null);
@@ -165,6 +166,7 @@ export default function AIPredictionDashboard({ currentPoint, activeFaults, onAp
 
   const handleExecuteMitigation = () => {
     setMitigationApplied(true);
+    audioAlertDispatcher.alertAllMitigated();
     if (onApplyMitigation) {
       onApplyMitigation();
     }
