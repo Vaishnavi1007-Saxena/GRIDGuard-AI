@@ -1,9 +1,11 @@
 import os
+from pathlib import Path
 import joblib
 import pandas as pd
 import numpy as np
 
-MODEL_PATH = "backend/data/gridguard_ml_model.joblib"
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = str(BASE_DIR / "data" / "gridguard_ml_model.joblib")
 
 class MLPredictionService:
     def __init__(self):

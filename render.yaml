@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: gridguard-ai
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "./render-build.sh"
+    startCommand: "python -m uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: LLM_PROVIDER
+        value: gemini
+      - key: LLM_MODEL
+        value: gemini-2.0-flash
