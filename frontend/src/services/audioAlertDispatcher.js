@@ -41,14 +41,35 @@ class AudioAlertDispatcher {
     if (!this.synth) return;
     const updateVoice = () => {
       const voices = this.synth.getVoices();
-      this.selectedVoice = voices.find(v => v.lang.startsWith('en') && (
-        v.name.includes('Google') ||
-        v.name.includes('Natural') ||
-        v.name.includes('Samantha') ||
-        v.name.includes('Zira') ||
-        v.name.includes('David')
-      )) || voices[0] || null;
+      
+      // Explicitly prioritize natural female voices across Windows, macOS, Chrome, and Edge
+      const femaleKeywords = [
+        'zira',         // Windows default female (Microsoft Zira)
+        'jenny',        // Edge Natural Female
+        'aria',         // Edge Natural Female
+        'samantha',     // macOS default female
+        'victoria',     // macOS female
+        'karen',        // Australian female
+        'female',       // Generic female tag
+        'google uk english female',
+        'google us english'
+      ];
+
+      // Find best female voice match
+      let match = null;
+      for (const keyword of femaleKeywords) {
+        match = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes(keyword));
+        if (match) break;
+      }
+
+      // Fallback: any English voice that is not explicitly named David, Mark, George, or Male
+      if (!match) {
+        match = voices.find(v => v.lang.startsWith('en') && !/(david|mark|george|male)/i.test(v.name));
+      }
+
+      this.selectedVoice = match || voices[0] || null;
     };
+
     updateVoice();
     if (this.synth.onvoiceschanged !== undefined) {
       this.synth.onvoiceschanged = updateVoice;
@@ -131,9 +152,9 @@ class AudioAlertDispatcher {
 
       const utterance = new SpeechSynthesisUtterance(message);
       if (this.selectedVoice) utterance.voice = this.selectedVoice;
-      utterance.rate = 1.12; // Crisp, fast military / command dispatch tempo
-      utterance.pitch = 1.02;
-      utterance.volume = 0.9;
+      utterance.rate = 1.05; // Natural, clear command dispatch tempo
+      utterance.pitch = 1.15; // Tuned for clear, bright female voice profile
+      utterance.volume = 1.0;
 
       this.synth.speak(utterance);
     } catch (e) {
